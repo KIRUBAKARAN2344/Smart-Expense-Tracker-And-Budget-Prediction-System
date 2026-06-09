@@ -1,1 +1,1 @@
-console.log("Smart Expense Tracker Started");
+console.log("Expense Tracker Running");
