@@ -37,4 +37,4 @@ function addExpense() {
     document.getElementById("category").value = "";
     document.getElementById("amount").value = "";
 }
-}
+
