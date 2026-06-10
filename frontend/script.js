@@ -12,23 +12,29 @@ document.getElementById("income").addEventListener("change", function () {
 
 function addExpense() {
 
-let amount =
-    Number(document.getElementById("amount").value);
+    let category =
+        document.getElementById("category").value;
 
-totalExpense += amount;
+    let amount =
+        Number(document.getElementById("amount").value);
 
-document.getElementById("totalExpense").innerText =
-    totalExpense;
+    totalExpense += amount;
 
-document.getElementById("remainingBudget").innerText =
-    income - totalExpense;
+    document.getElementById("totalExpense").innerText =
+        totalExpense;
 
-let predictedExpense =
-    Math.round(totalExpense * 1.10);
+    document.getElementById("remainingBudget").innerText =
+        income - totalExpense;
 
-document.getElementById("prediction").innerText =
-    "₹" + predictedExpense;
+    let row =
+        `<tr>
+            <td>${category}</td>
+            <td>₹${amount}</td>
+        </tr>`;
 
-document.getElementById("amount").value = "";
+    document.getElementById("expenseTable").innerHTML += row;
 
+    document.getElementById("category").value = "";
+    document.getElementById("amount").value = "";
+}
 }
