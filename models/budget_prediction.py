@@ -1,13 +1,22 @@
+import pandas as pd
 from sklearn.linear_model import LinearRegression
-import numpy as np
 
-months = np.array([1, 2, 3, 4, 5, 6]).reshape(-1, 1)
-expenses = np.array([10000, 12000, 15000, 17000, 18000, 20000])
+# Load dataset
+data = pd.read_csv("datasets/expenses.csv")
 
+# Input (Month)
+X = data[["Month"]]
+
+# Output (Expense)
+y = data["Expense"]
+
+# Train Model
 model = LinearRegression()
-model.fit(months, expenses)
+model.fit(X, y)
 
-next_month = np.array([[7]])
+# Predict next month
+next_month = [[11]]
+
 prediction = model.predict(next_month)
 
-print("Predicted Expense for Next Month: ₹", int(prediction[0]))
+print("Predicted Expense for Month 11:", prediction[0])
