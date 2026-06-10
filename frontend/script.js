@@ -93,3 +93,14 @@ fetch("/predict")
         console.log("Prediction Error:", error);
 
     });
+const ctx = document.getElementById("expenseChart");
+
+const expenseChart = new Chart(ctx, {
+    type: "pie",
+    data: {
+        labels: Object.keys(expenseData),
+        datasets: [{
+            data: Object.values(expenseData)
+        }]
+    }
+});
