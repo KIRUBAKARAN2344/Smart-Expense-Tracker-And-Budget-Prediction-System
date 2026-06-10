@@ -1,5 +1,13 @@
 let income = 0;
 let totalExpense = 0;
+let expenseData = {
+    Food: 0,
+    Transport: 0,
+    Shopping: 0,
+    Entertainment: 0,
+    Education: 0,
+    Medical: 0
+};
 
 // Update Health Score
 function updateHealthScore() {
