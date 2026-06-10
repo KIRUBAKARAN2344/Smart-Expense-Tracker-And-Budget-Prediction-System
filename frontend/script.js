@@ -49,4 +49,15 @@ function addExpense() {
     // Clear inputs
     document.getElementById("category").value = "";
     document.getElementById("amount").value = "";
+    // Get AI prediction from Flask backend
+
+fetch("/predict")
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("prediction").innerText =
+            "₹" + data.predicted_expense.toFixed(2);
+    })
+    .catch(error => {
+        console.log("Prediction Error:", error);
+    });
 }
