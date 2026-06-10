@@ -1,7 +1,8 @@
 let income = 0;
 let totalExpense = 0;
 
-document.getElementById("income").addEventListener("change", function () {
+document.getElementById("income").addEventListener("input", function () {
+
     income = Number(this.value);
 
     document.getElementById("totalIncome").innerText = income;
@@ -12,11 +13,14 @@ document.getElementById("income").addEventListener("change", function () {
 
 function addExpense() {
 
-    let category =
-        document.getElementById("category").value;
+    let category = document.getElementById("category").value;
 
-    let amount =
-        Number(document.getElementById("amount").value);
+    let amount = Number(document.getElementById("amount").value);
+
+    if (category === "" || amount <= 0) {
+        alert("Please enter valid expense details");
+        return;
+    }
 
     totalExpense += amount;
 
@@ -26,15 +30,23 @@ function addExpense() {
     document.getElementById("remainingBudget").innerText =
         income - totalExpense;
 
-    let row =
-        `<tr>
+    // Budget Prediction
+    let prediction = Math.round(totalExpense * 1.1);
+
+    document.getElementById("prediction").innerText =
+        prediction;
+
+    // Add expense to table
+    let row = `
+        <tr>
             <td>${category}</td>
             <td>₹${amount}</td>
-        </tr>`;
+        </tr>
+    `;
 
     document.getElementById("expenseTable").innerHTML += row;
 
+    // Clear inputs
     document.getElementById("category").value = "";
     document.getElementById("amount").value = "";
 }
-
