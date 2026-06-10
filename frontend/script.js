@@ -56,6 +56,12 @@ function addExpense() {
     }
 
     totalExpense += amount;
+    expenseData[category] += amount;
+
+expenseChart.data.datasets[0].data =
+    Object.values(expenseData);
+
+expenseChart.update();
 
     document.getElementById("totalExpense").innerText =
         totalExpense;
