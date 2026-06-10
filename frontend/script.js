@@ -1,25 +1,48 @@
 let income = 0;
 let totalExpense = 0;
 
+// Update Health Score
+function updateHealthScore() {
+
+    if (income > 0) {
+
+        let score = Math.round(
+            ((income - totalExpense) / income) * 100
+        );
+
+        if (score < 0) {
+            score = 0;
+        }
+
+        document.getElementById("healthScore").innerText =
+            score;
+    }
+}
+
 // Income Update
 document.getElementById("income").addEventListener("input", function () {
 
     income = Number(this.value);
 
-    document.getElementById("totalIncome").innerText = income;
+    document.getElementById("totalIncome").innerText =
+        income;
 
     document.getElementById("remainingBudget").innerText =
         income - totalExpense;
+
+    updateHealthScore();
 });
 
 // Add Expense Function
 function addExpense() {
 
-    let category = document.getElementById("category").value;
+    let category =
+        document.getElementById("category").value;
 
-    let amount = Number(document.getElementById("amount").value);
+    let amount =
+        Number(document.getElementById("amount").value);
 
-    if (category === "" || amount <= 0) {
+    if (amount <= 0) {
         alert("Please enter valid expense details");
         return;
     }
@@ -32,11 +55,8 @@ function addExpense() {
     document.getElementById("remainingBudget").innerText =
         income - totalExpense;
 
-    // Temporary Prediction
-    let prediction = Math.round(totalExpense * 1.1);
-
-    document.getElementById("prediction").innerText =
-        prediction;
+    // Update Health Score
+    updateHealthScore();
 
     // Add Expense to Table
     let row = `
@@ -48,8 +68,6 @@ function addExpense() {
 
     document.getElementById("expenseTable").innerHTML += row;
 
-    // Clear Inputs
-    document.getElementById("category").value = "";
     document.getElementById("amount").value = "";
 }
 
@@ -57,9 +75,13 @@ function addExpense() {
 fetch("/predict")
     .then(response => response.json())
     .then(data => {
+
         document.getElementById("prediction").innerText =
             data.predicted_expense.toFixed(2);
+
     })
     .catch(error => {
+
         console.log("Prediction Error:", error);
+
     });
