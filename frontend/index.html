@@ -77,32 +77,61 @@
 
         <tbody id="expenseTable">
         </tbody>
-
     </table>
 
     <h2>Expense Analytics</h2>
 
     <canvas id="expenseChart"></canvas>
+
     <h2>Financial Health Score</h2>
 
-<div class="ai-box">
-    <p class="health-score">
-        <span id="healthScore">100</span>/100
-    </p>
-</div>
+    <div class="ai-box">
+        <p class="health-score">
+            <span id="healthScore">100</span>/100
+        </p>
+    </div>
 
-    <script src="script.js"></script>
-<h2>AI Financial Advisor</h2>
+    <h2>AI Financial Advisor</h2>
 
-<div class="ai-box">
-    <p id="aiSuggestion">
-        Start adding expenses to receive AI suggestions.
-    </p>
-</div>
+    <div class="ai-box">
+        <p id="aiSuggestion">
+            Start adding expenses to receive AI suggestions.
+        </p>
+    </div>
+
     <h2>Risk Level</h2>
 
-<div class="ai-box">
-    <p id="riskLevel">LOW</p>
-</div>
+    <div class="ai-box">
+        <p id="riskLevel">LOW</p>
+    </div>
+
+    <h2>Statistics</h2>
+
+    <div class="dashboard">
+
+        <div class="card">
+            <h3>Total Transactions</h3>
+            <p id="transactionCount">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Average Expense</h3>
+            <p>₹<span id="averageExpense">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>Highest Expense</h3>
+            <p>₹<span id="highestExpense">0</span></p>
+        </div>
+
+        <div class="card">
+            <h3>Lowest Expense</h3>
+            <p>₹<span id="lowestExpense">0</span></p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
