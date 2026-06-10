@@ -1,13 +1,26 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 import pandas as pd
 from sklearn.linear_model import LinearRegression
+import os
 
 app = Flask(__name__)
 
+# Home Page
 @app.route("/")
 def home():
-    return "Smart Expense Tracker Backend Running"
+    return send_from_directory("../frontend", "index.html")
 
+# CSS File
+@app.route("/style.css")
+def style():
+    return send_from_directory("../frontend", "style.css")
+
+# JavaScript File
+@app.route("/script.js")
+def script():
+    return send_from_directory("../frontend", "script.js")
+
+# AI Prediction API
 @app.route("/predict")
 def predict():
 
