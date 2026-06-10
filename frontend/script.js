@@ -1,6 +1,7 @@
 let income = 0;
 let totalExpense = 0;
 
+// Income Update
 document.getElementById("income").addEventListener("input", function () {
 
     income = Number(this.value);
@@ -11,6 +12,7 @@ document.getElementById("income").addEventListener("input", function () {
         income - totalExpense;
 });
 
+// Add Expense Function
 function addExpense() {
 
     let category = document.getElementById("category").value;
@@ -30,13 +32,13 @@ function addExpense() {
     document.getElementById("remainingBudget").innerText =
         income - totalExpense;
 
-    // Budget Prediction
+    // Temporary Prediction
     let prediction = Math.round(totalExpense * 1.1);
 
     document.getElementById("prediction").innerText =
         prediction;
 
-    // Add expense to table
+    // Add Expense to Table
     let row = `
         <tr>
             <td>${category}</td>
@@ -46,18 +48,18 @@ function addExpense() {
 
     document.getElementById("expenseTable").innerHTML += row;
 
-    // Clear inputs
+    // Clear Inputs
     document.getElementById("category").value = "";
     document.getElementById("amount").value = "";
-    // Get AI prediction from Flask backend
+}
 
+// Load AI Prediction From Flask
 fetch("/predict")
     .then(response => response.json())
     .then(data => {
         document.getElementById("prediction").innerText =
-            "₹" + data.predicted_expense.toFixed(2);
+            data.predicted_expense.toFixed(2);
     })
     .catch(error => {
         console.log("Prediction Error:", error);
     });
-}
