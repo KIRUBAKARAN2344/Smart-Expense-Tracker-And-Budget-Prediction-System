@@ -39,9 +39,41 @@ document.getElementById("income").addEventListener("input", function () {
         income - totalExpense;
 
     updateHealthScore();
+    updateAISuggestion();
 });
 
-// Add Expense Function
+function updateAISuggestion() {
+
+    let suggestion = "Budget is under control.";
+
+    if (income > 0) {
+
+        let spendingPercentage =
+            (totalExpense / income) * 100;
+
+        if (spendingPercentage > 80) {
+
+            suggestion =
+            "⚠ Warning: You have spent more than 80% of your income.";
+
+        }
+        else if (spendingPercentage > 60) {
+
+            suggestion =
+            "⚠ Moderate spending detected. Consider reducing expenses.";
+
+        }
+        else {
+
+            suggestion =
+            "✅ Excellent! Your spending is well managed.";
+
+        }
+    }
+
+    document.getElementById("aiSuggestion").innerText =
+        suggestion;
+}// Add Expense Function
 function addExpense() {
 
     let category =
@@ -71,6 +103,7 @@ expenseChart.update();
 
     // Update Health Score
     updateHealthScore();
+    updateAISuggestion();
 
     // Add Expense to Table
     let row = `
